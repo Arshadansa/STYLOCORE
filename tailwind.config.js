@@ -4,14 +4,20 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './node_modules/flowbite-react/**/*.js', // Add this line for Flowbite
   ],
   theme: {
     extend: {
+      
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#9896bc",
+        silder: "#2d2d35",
       },
     },
+    
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')  // Add Flowbite plugin here
+]
+
 };
