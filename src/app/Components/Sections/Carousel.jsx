@@ -19,7 +19,7 @@ export default function Carousel({ products, category }) {
   };
 
   return (
-    <section className="relative">
+    <section className="relative overflow-hidden scrollbar-hide">
       <button
         onClick={scrollLeft}
         className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 focus:outline-none z-10"
@@ -30,7 +30,7 @@ export default function Carousel({ products, category }) {
       <div
         ref={carouselRef}
         className="flex gap-4 overflow-x-auto scroll-smooth scrollbar-hide mt-5"
-      >
+        >
         {products.map((product) => (
           <div
             key={product.id}
