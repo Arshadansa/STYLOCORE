@@ -12,6 +12,7 @@ module.exports = {
       colors: {
         primary: "#9896bc",
         silder: "#2d2d35",
+        aboutsection:"#dfdeec"
       },
     },
     

@@ -9,14 +9,12 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import Logo from "./Logo";
 
-// import { useCart } from "../Context/cartContext";
 
-function Navbar() {
+
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef(null);
 
-  //   const { itemCount } = useCart();
-  //   console.log(itemCount);
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) {
@@ -28,7 +26,7 @@ function Navbar() {
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setIsOpen(false);
-    }, 200); // Adjust delay as needed
+    }, 200); 
   };
 
   return (
@@ -169,4 +167,3 @@ function Navbar() {
   );
 }
 
-export default Navbar;

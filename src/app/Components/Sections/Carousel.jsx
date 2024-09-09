@@ -30,7 +30,7 @@ export default function Carousel({ products, category }) {
 
       <div
         ref={carouselRef}
-        className="flex gap-4 overflow-x-auto scroll-smooth scrollbar-hide mt-5"
+        className="flex gap-4 md:gap-8 overflow-x-auto scroll-smooth scrollbar-hide mt-5"
       >
         {products.map((product) => (
           <div
@@ -42,11 +42,11 @@ export default function Carousel({ products, category }) {
                 {product.rank}
               </span>
               <Image
-                src="/images/natural.png" // Leading slash is important
+                src="/images/natural.png"
                 alt="Natural Image"
-                width={340} // Set appropriate width and height
+                width={340} 
                 height={500}
-                className="rounded-2xl w-80 h-96"
+                className="rounded-2xl hover:cursor-pointer w-80 h-96"
               />
             </div>
             <h3 className="mt-4 text-xl text-[#67656f] text-center font-semibold">

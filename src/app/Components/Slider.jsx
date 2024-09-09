@@ -1,7 +1,7 @@
 'use clinet'
 import Marquee from 'react-fast-marquee';
 
-function Slider() {
+export default function Slider() {
   return (
     <div className="bg-silder px-[4px] py-[3px] font-medium text-white md:px-[8px] md:py-[6px] md:text-[18px]">
       <Marquee autoFill={true}>
@@ -14,4 +14,3 @@ function Slider() {
   );
 }
 
-export default Slider;

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-function Logo() {
+export default function Logo() {
   return (
     <div>
       <Link href="/">
@@ -20,5 +20,3 @@ function Logo() {
     </div>
   );
 }
-
-export default Logo;
