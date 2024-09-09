@@ -8,7 +8,7 @@ function Logo() {
       <Link href="/">
         <span className="flex items-center space-x-3 rtl:space-x-reverse">
           <Image
-            src="/Images/3.png"
+            src="/images/3.png"
             alt="Logo"
             className="object-cover"
             width={100} // Set the width to match `w-60` (60 * 4px = 240px)

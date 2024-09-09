@@ -43,7 +43,7 @@ function Navbar() {
                 className="text-black group-hover:text-primary transition-colors duration-300"
               />
             </div>
-            <Link href="/account/login">
+            <Link href={'/'}>
               <span className=" group">
                 <MdOutlineAccountCircle size={34} className=" font-thin " />
               </span>
