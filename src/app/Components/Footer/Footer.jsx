@@ -29,19 +29,19 @@ export default function Footer() {
                 </Link>
               </li>
               <li className="mb-2 flex md:flex-row flex-col md:items-center gap-1">
-                <Link href="#" className=" hover:underline text-gray-500 ">
+                <Link href="/" className=" hover:underline text-gray-500 ">
                   All Products
                 </Link>
-                <Link href="#" className=" hover:underline text-gray-300 ">
+                <Link href="/" className=" hover:underline text-gray-300 ">
                   Products 1
                 </Link>
-                <Link href="#" className=" hover:underline text-gray-300 ">
+                <Link href="/" className=" hover:underline text-gray-300 ">
                   Products 2
                 </Link>
-                <Link href="#" className=" hover:underline text-gray-300 ">
+                <Link href="/" className=" hover:underline text-gray-300 ">
                   Products 3
                 </Link>
-                <Link href="#" className=" hover:underline text-gray-300 ">
+                <Link href="/" className=" hover:underline text-gray-300 ">
                   Products 4
                 </Link>
               </li>
@@ -52,7 +52,7 @@ export default function Footer() {
               </li>
               <li className="mb-2">
                 <Link href="/mens" className="hover:underline">
-                  Mens{" "}
+                  Mens
                 </Link>
               </li>
               <li className="mb-2">
@@ -107,27 +107,27 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h2 class="mb-6 text-lg font-semibold text-gray-900 uppercase dark:text-white">
+            <h2 className="mb-6 text-lg font-semibold text-gray-900 uppercase dark:text-white">
               Legal
             </h2>
-            <ul class="text-gray-500 text-sm dark:text-gray-400 font-medium">
-              <li class="mb-4">
-                <Link href="/privacy-policy" class="hover:underline">
+            <ul className="text-gray-500 text-sm dark:text-gray-400 font-medium">
+              <li className="mb-4">
+                <Link href="/privacy-policy" className="hover:underline">
                   Privacy Policy
                 </Link>
               </li>
-              <li class="mb-4">
-                <Link href="/terms-and-conditions" class="hover:underline">
+              <li className="mb-4">
+                <Link href="/terms-and-conditions" className="hover:underline">
                   Terms &amp; Conditions
                 </Link>
               </li>
-              <li class="mb-4">
-                <Link href="/shipping" class="hover:underline">
+              <li className="mb-4">
+                <Link href="/shipping" className="hover:underline">
                   Shipping &amp; returns
                 </Link>
               </li>
-              <li class="mb-4">
-                <Link href="/returns" class="hover:underline">
+              <li className="mb-4">
+                <Link href="/returns" className="hover:underline">
                   Returns &amp; exchange policy
                 </Link>
               </li>

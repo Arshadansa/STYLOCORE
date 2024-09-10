@@ -27,7 +27,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`  w-full transition-opacity duration-300`}>
+    <nav className="w-full transition-opacity duration-300">
       <div className="max-w-screen-2xl flex  flex-wrap items-center justify-between mx-auto px-12 p-4">
         <Logo />
         <div className="flex md:order-2    space-x-3 md:space-x-0 rtl:space-x-reverse">
