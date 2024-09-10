@@ -5,7 +5,7 @@ import Logo from "./Logo";
 
 export default function Hero() {
   return (
-    <section classname="">
+    <section className="">
       <div className="pointer-events-none border border-[#9896bc] relative h-[470px] select-none md:h-[calc(100vh_-_80px)]">
         <video
           playsInline

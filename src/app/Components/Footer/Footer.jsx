@@ -107,27 +107,27 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h2 class="mb-6 text-lg font-semibold text-gray-900 uppercase dark:text-white">
+            <h2 className="mb-6 text-lg font-semibold text-gray-900 uppercase dark:text-white">
               Legal
             </h2>
-            <ul class="text-gray-500 text-sm dark:text-gray-400 font-medium">
-              <li class="mb-4">
-                <Link href="/privacy-policy" class="hover:underline">
+            <ul className="text-gray-500 text-sm dark:text-gray-400 font-medium">
+              <li className="mb-4">
+                <Link href="/privacy-policy" className="hover:underline">
                   Privacy Policy
                 </Link>
               </li>
-              <li class="mb-4">
-                <Link href="/terms-and-conditions" class="hover:underline">
+              <li className="mb-4">
+                <Link href="/terms-and-conditions" className="hover:underline">
                   Terms &amp; Conditions
                 </Link>
               </li>
-              <li class="mb-4">
-                <Link href="/shipping" class="hover:underline">
+              <li className="mb-4">
+                <Link href="/shipping" className="hover:underline">
                   Shipping &amp; returns
                 </Link>
               </li>
-              <li class="mb-4">
-                <Link href="/returns" class="hover:underline">
+              <li className="mb-4">
+                <Link href="/returns" className="hover:underline">
                   Returns &amp; exchange policy
                 </Link>
               </li>
