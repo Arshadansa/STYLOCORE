@@ -19,7 +19,12 @@ export default function Footer() {
             </h2>
             <ul className="text-gray-500 text-sm dark:text-gray-400 font-medium">
               <li className="mb-2">
-                <Link href="#" className="hover:underline">
+                <Link href="/contact-us" className="hover:underline">
+                  Contact Us
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link href="/about-us" className="hover:underline">
                   About us
                 </Link>
               </li>
@@ -41,22 +46,22 @@ export default function Footer() {
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="#" className="hover:underline">
+                <Link href="/best-seller" className="hover:underline">
                   Best Sellers
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="#" className="hover:underline">
+                <Link href="/mens" className="hover:underline">
                   Mens{" "}
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="#" className="hover:underline">
+                <Link href="/womens" className="hover:underline">
                   Women's
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="#" className="hover:underline">
+                <Link href="/kids" className="hover:underline">
                   Kids
                 </Link>
               </li>
@@ -102,19 +107,32 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h2 class="mb-6 text-lg font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+            <h2 class="mb-6 text-lg font-semibold text-gray-900 uppercase dark:text-white">
+              Legal
+            </h2>
             <ul class="text-gray-500 text-sm dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Privacy Policy</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Licensing</a>
-                </li>
-                <li class="mb-4">
-                    <a href="#" class="hover:underline">Terms &amp; Conditions</a>
-                </li>
+              <li class="mb-4">
+                <Link href="/privacy-policy" class="hover:underline">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li class="mb-4">
+                <Link href="/terms-and-conditions" class="hover:underline">
+                  Terms &amp; Conditions
+                </Link>
+              </li>
+              <li class="mb-4">
+                <Link href="/shipping" class="hover:underline">
+                  Shipping &amp; returns
+                </Link>
+              </li>
+              <li class="mb-4">
+                <Link href="/returns" class="hover:underline">
+                  Returns &amp; exchange policy
+                </Link>
+              </li>
             </ul>
-        </div>
+          </div>
           <div className="">
             <h2 className="mb-6 text-lg  font-semibold text-gray-900 uppercase dark:text-white">
               Disclaimer

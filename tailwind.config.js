@@ -12,7 +12,8 @@ module.exports = {
       colors: {
         primary: "#9896bc",
         silder: "#2d2d35",
-        aboutsection:"#dfdeec"
+        aboutsection:"#dfdeec",
+        secondary:"#5e5c70"
       },
     },
     

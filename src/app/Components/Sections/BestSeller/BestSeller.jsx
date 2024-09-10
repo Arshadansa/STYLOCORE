@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Carousel from "../Carousel";
-const categories = ["Clothing", "Bags", "Shoes", "Accessories"];
+const categories = ["Mens", "Womens", "Kids", "BestSellers"];
 
 const products = {
-  Accessories: [
+  BestSellers: [
     {
       id: 1,
       rank: "1st",
@@ -28,107 +28,107 @@ const products = {
       image: "/images/bracelet.jpg",
     },
     {
-        id: 4,
-        rank: "2nd",
-        name: "Pearl Emotion Bracelet",
-        price: "¥16,500",
-        image: "/images/bracelet.jpg",
-      },
+      id: 4,
+      rank: "2nd",
+      name: "Pearl Emotion Bracelet",
+      price: "¥16,500",
+      image: "/images/bracelet.jpg",
+    },
   ],
-  Clothing: [
+  Kids: [
     {
-        id: 1,
-        rank: "1st",
-        name: "Clear Earrings",
-        price: "¥20,900",
-        image: "/images/earrings.jpg",
-      },
-      {
-        id: 2,
-        rank: "2nd",
-        name: "Pearl Emotion Bracelet",
-        price: "¥16,500",
-        image: "/images/bracelet.jpg",
-      },
-      {
-        id: 3,
-        rank: "2nd",
-        name: "Pearl Emotion Bracelet",
-        price: "¥16,500",
-        image: "/images/bracelet.jpg",
-      },
-      {
-          id: 4,
-          rank: "2nd",
-          name: "Pearl Emotion Bracelet",
-          price: "¥16,500",
-          image: "/images/bracelet.jpg",
-        },
+      id: 1,
+      rank: "1st",
+      name: "Clear Earrings",
+      price: "¥20,900",
+      image: "/images/earrings.jpg",
+    },
+    {
+      id: 2,
+      rank: "2nd",
+      name: "Pearl Emotion Bracelet",
+      price: "¥16,500",
+      image: "/images/bracelet.jpg",
+    },
+    {
+      id: 3,
+      rank: "2nd",
+      name: "Pearl Emotion Bracelet",
+      price: "¥16,500",
+      image: "/images/bracelet.jpg",
+    },
+    {
+      id: 4,
+      rank: "2nd",
+      name: "Pearl Emotion Bracelet",
+      price: "¥16,500",
+      image: "/images/bracelet.jpg",
+    },
   ],
-  Bags: [
+  Womens: [
     {
-        id: 1,
-        rank: "1st",
-        name: "Clear Earrings",
-        price: "¥20,900",
-        image: "/images/earrings.jpg",
-      },
-      {
-        id: 2,
-        rank: "2nd",
-        name: "Pearl Emotion Bracelet",
-        price: "¥16,500",
-        image: "/images/bracelet.jpg",
-      },
-      {
-        id: 3,
-        rank: "2nd",
-        name: "Pearl Emotion Bracelet",
-        price: "¥16,500",
-        image: "/images/bracelet.jpg",
-      },
-      {
-          id: 4,
-          rank: "2nd",
-          name: "Pearl Emotion Bracelet",
-          price: "¥16,500",
-          image: "/images/bracelet.jpg",
-        },
+      id: 1,
+      rank: "1st",
+      name: "Clear Earrings",
+      price: "¥20,900",
+      image: "/images/earrings.jpg",
+    },
+    {
+      id: 2,
+      rank: "2nd",
+      name: "Pearl Emotion Bracelet",
+      price: "¥16,500",
+      image: "/images/bracelet.jpg",
+    },
+    {
+      id: 3,
+      rank: "2nd",
+      name: "Pearl Emotion Bracelet",
+      price: "¥16,500",
+      image: "/images/bracelet.jpg",
+    },
+    {
+      id: 4,
+      rank: "2nd",
+      name: "Pearl Emotion Bracelet",
+      price: "¥16,500",
+      image: "/images/bracelet.jpg",
+    },
   ],
-  Shoes: [
+  Mens: [
     {
-        id: 1,
-        rank: "1st",
-        name: "Clear Earrings",
-        price: "¥20,900",
-        image: "/images/earrings.jpg",
-      },
-      {
-        id: 2,
-        rank: "2nd",
-        name: "Pearl Emotion Bracelet",
-        price: "¥16,500",
-        image: "/images/bracelet.jpg",
-      },
-      {
-        id: 3,
-        rank: "2nd",
-        name: "Pearl Emotion Bracelet",
-        price: "¥16,500",
-        image: "/images/bracelet.jpg",
-      },
-      {
-          id: 4,
-          rank: "2nd",
-          name: "Pearl Emotion Bracelet",
-          price: "¥16,500",
-          image: "/images/bracelet.jpg",
-        },
+      id: 1,
+      rank: "1st",
+      name: "Clear Earrings",
+      price: "¥20,900",
+      image: "/images/earrings.jpg",
+    },
+    {
+      id: 2,
+      rank: "2nd",
+      name: "Pearl Emotion Bracelet",
+      price: "¥16,500",
+      image: "/images/bracelet.jpg",
+    },
+    {
+      id: 3,
+      rank: "2nd",
+      name: "Pearl Emotion Bracelet",
+      price: "¥16,500",
+      image: "/images/bracelet.jpg",
+    },
+    {
+      id: 4,
+      rank: "2nd",
+      name: "Pearl Emotion Bracelet",
+      price: "¥16,500",
+      image: "/images/bracelet.jpg",
+    },
   ],
 };
 
 export default function BestSellers() {
-  const [activeCategory, setActiveCategory] = useState("Accessories");
+  const [activeCategory, setActiveCategory] = useState("BestSellers");
 
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
@@ -149,11 +149,11 @@ export default function BestSellers() {
               onClick={() => handleCategoryChange(category)}
               className={`pb-2 ${
                 activeCategory === category
-                  ? "text-indigo-500 border-b-2 border-indigo-500"
+                  ? "text-indigo-500  border-b-2 border-indigo-500"
                   : "text-gray-500"
               }`}
             >
-              {category}
+              <span className="text-2xl">{category}</span>
             </button>
           ))}
         </div>

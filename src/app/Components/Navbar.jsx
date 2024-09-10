@@ -9,12 +9,9 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import Logo from "./Logo";
 
-
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef(null);
-
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) {
@@ -26,7 +23,7 @@ export default function Navbar() {
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setIsOpen(false);
-    }, 200); 
+    }, 200);
   };
 
   return (
@@ -41,7 +38,7 @@ export default function Navbar() {
                 className="text-black group-hover:text-primary transition-colors duration-300"
               />
             </div>
-            <Link href={'/'}>
+            <Link href={"/"}>
               <span className=" group">
                 <MdOutlineAccountCircle size={34} className=" font-thin " />
               </span>
@@ -135,28 +132,28 @@ export default function Navbar() {
                 </Link>
               </div>
             </motion.div>
-            <li>
-              <Link href="/contact">
+            <li className="hover:underline  hover:text-[#9896bc] transition-all duration-700 ease-in-out">
+              <Link href="/best-seller">
                 <span>Best Sellers</span>
               </Link>
             </li>
-            <li>
-              <Link href="/contact">
+            <li className="hover:underline  hover:text-[#9896bc] transition-all duration-700 ease-in-out">
+              <Link href="/mens">
                 <span>Mens</span>
               </Link>
             </li>
-            <li>
-              <Link href="/contact">
+            <li className="hover:underline  hover:text-[#9896bc] transition-all duration-700 ease-in-out">
+              <Link href="/womens">
                 <span>Women's</span>
               </Link>
             </li>
-            <li>
-              <Link href="/contact">
+            <li className="hover:underline  hover:text-[#9896bc] transition-all duration-700 ease-in-out">
+              <Link href="/kids">
                 <span>Kids </span>
               </Link>
             </li>
-            <li>
-              <Link href="/contact">
+            <li className="hover:underline  hover:text-[#9896bc] transition-all duration-700 ease-in-out">
+              <Link href="/about-us">
                 <span>About us</span>
               </Link>
             </li>
@@ -166,4 +163,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
