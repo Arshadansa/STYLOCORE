@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    reactStrictMode: true,
     images: {
-      loader: 'default', // Default Next.js loader for internal images
-      disableStaticImages: false, // Enable static image imports
+      domains: ['http://localhost:3000/', 'https://stylocore-everidoor.vercel.app/'],
+      unoptimized: true, // Disable image optimization for static export
     },
-  };
+  }
 
 export default nextConfig;
