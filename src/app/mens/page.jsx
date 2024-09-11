@@ -11,7 +11,7 @@ export default function Mens() {
         <h2 className="w-full text-secondary text-center font-lora text-[clamp(28px,20px_+_2vw,40px)] font-medium text-veryDarkPurple ">
           Mens
         </h2>
-        <Products allProducts={allProducts} />
+        <Products  allProducts={allProducts} />
       </div>
     </section>
   );

@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { CiSearch } from "react-icons/ci";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { MdOutlineAccountCircle } from "react-icons/md";
+import { useCart } from "../context/cartContext";
+
 import Logo from "./Logo";
 
 export default function Navbar() {
@@ -25,7 +27,7 @@ export default function Navbar() {
       setIsOpen(false);
     }, 200);
   };
-
+  const { itemCount } = useCart();
   return (
     <nav className={`  w-full transition-opacity duration-300`}>
       <div className="max-w-screen-2xl flex  flex-wrap items-center justify-between mx-auto px-12 p-4">
@@ -48,7 +50,7 @@ export default function Navbar() {
               <span className=" relative  group">
                 <HiOutlineShoppingBag size={34} />
                 <span className="text-white rounded-full px-1.5 bottom-4 left-5 bg-primary absolute text-[10px]">
-                  {1}
+                  {itemCount}
                 </span>
               </span>
             </Link>
