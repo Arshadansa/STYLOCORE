@@ -15,7 +15,9 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Loader from "../../Components/loader/Loader";
 import NoProduct from "@/app/Components/loader/NoProduct";
 
+
 export default function AllOrders() {
+
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -89,7 +91,8 @@ export default function AllOrders() {
   }
 
   if (error) {
-    return <NoProduct />;
+    window.location.href = "/auth/login";
+    return null;
   }
 
   return (

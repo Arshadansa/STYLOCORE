@@ -41,7 +41,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen flex p-5 items-center border-primary border-t border-b justify-center bg-gray-50">
       <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-8 sm:p-12 flex">
         <div className="hidden sm:flex flex-col w-1/2 gap-10 p-6">
           <div className="flex items-center gap-3">
@@ -63,7 +63,7 @@ export default function Login() {
           </div>
         </div>
 
-        <div className="flex flex-col w-full sm:w-1/2 p-6">
+        <div className="flex flex-col w-full sm:w-1/2 p-4">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">Welcome back</h2>
           {message.text && (
             <div className={`text-center mb-4 ${message.type === 'error' ? 'text-red-500' : 'text-green-500'}`}>
@@ -122,9 +122,9 @@ export default function Login() {
             )}
 
             <div className="flex items-center justify-between">
-              <label className="flex items-center">
+              <label className="flex gap-1 items-center">
                 <input type="checkbox" className="form-checkbox text-indigo-600" />
-                <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                <span className="md:ml-2  text-sm text-gray-600">Remember me</span>
               </label>
               <Link href="/auth/forgot" className="text-sm text-indigo-600 hover:underline">Forgot password?</Link>
             </div>

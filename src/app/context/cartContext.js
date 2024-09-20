@@ -58,32 +58,49 @@ export const CartProvider = ({ children }) => {
   // Add to cart
   const addToCart = useCallback((product) => {
     setCart((prevCart) => {
-      const existingProductIndex = prevCart.findIndex(item => item.id === product.id);
+      // Check for existing products with the same ID, color, size, and price
+      const existingProductIndex = prevCart.findIndex(item =>
+        item.id === product.id &&
+        item.color === product.color && // Ensure color matches
+        item.size === product.size && // Ensure size matches
+        item.price === product.price // Ensure price matches
+      );
+  
       const updatedCart = [...prevCart];
-
+  
       if (existingProductIndex > -1) {
+        // If it exists, update the quantity
         updatedCart[existingProductIndex].quantity += product.quantity;
         setNotification({ type: 'update', message: `${product.name} quantity updated` });
       } else {
+        // If it doesn't exist, add it as a new product
         updatedCart.push(product);
         setNotification({ type: 'add', message: `${product.name} added to cart` });
       }
-
+  
       return updatedCart;
     });
   }, []);
+  
 
   // Remove from cart
-  const removeFromCart = useCallback((productId) => {
+  const removeFromCart = useCallback((productId, productPrice) => {
     setCart((prevCart) => {
-      const updatedCart = prevCart.filter((item) => item.id !== productId);
-      const item = prevCart.find(item => item.id === productId);
-      if (item) {
-        setNotification({ type: 'remove', message: `${item.name} removed from cart` });
+      const updatedCart = prevCart.filter((item) => {
+        // Remove the item only if both ID and price match
+        return !(item.id === productId && item.price === productPrice);
+      });
+      
+      const itemToRemove = prevCart.find(item => item.id === productId && item.price === productPrice);
+      
+      if (itemToRemove) {
+        setNotification({ type: 'remove', message: `${itemToRemove.name} removed from cart` });
       }
+  
       return updatedCart;
     });
   }, []);
+  
 
   // Clear cart
   const clearCart = useCallback(() => {

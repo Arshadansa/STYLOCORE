@@ -3,15 +3,15 @@
 import { useMemo, useState } from "react";
 import { useCart } from "../context/cartContext";
 import Link from "next/link";
-import CartItem from "./cartitems/page";
+import CartItem from "./cartitems/page"; // Ensure this imports your CartItem component
 import { FaIndianRupeeSign } from "react-icons/fa6";
-import { useAuth } from "../context/authContext"; // Use the correct hook from Auth context
+import { useAuth } from "../context/authContext";
 import NoProduct from "../Components/loader/NoProduct";
 import Login from "../Components/Login";
 
 export default function CartPage() {
   const { cart, removeFromCart, clearCart } = useCart();
-  const { user } = useAuth(); // Use auth context to check if the user is logged in
+  const { user } = useAuth();
   const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   const totalPrice = useMemo(() => {
@@ -22,18 +22,20 @@ export default function CartPage() {
 
   const handleCheckout = () => {
     if (!user) {
-      // If the user is not logged in, show the login modal
       setShowLoginPopup(true);
     } else {
-      // Proceed to checkout if the user is logged in
       window.location.href = "/checkout";
     }
   };
+  if (showLoginPopup) {
+    window.location.href = "/auth/login";
+    return null;
+  }
 
   return (
-    <section className="border-t border-b border-primary flex items-center justify-center flex-col p-3">
+    <section className="border-t border-b border-primary flex items-center justify-center flex-col p-4">
       <h2 className="text-2xl text-center font-bold mt-4">Shopping Cart</h2>
-      <div className="my-24 w-[80%] border p-4 bg-white shadow-md rounded-md">
+      <div className="my-24 w-full md:w-[80%] border p-2 md:p-4 bg-white shadow-md rounded-md">
         {cart.length === 0 ? (
           <div className="w-full flex flex-col items-center justify-center">
             <p className="text-primary my-3 text-3xl md:text-5xl">
@@ -60,16 +62,16 @@ export default function CartPage() {
               </span>
               <span className="text-xl font-semibold">Total: {totalPrice}</span>
             </div>
-            <div className="flex flex-col md:flex-row justify-between">
+            <div className="flex flex-row justify-between">
               <button
                 onClick={clearCart}
-                className="bg-[#5b5c70] w-fit font-bold hover:bg-primary mt-4 text-white p-3 px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md"
+                className="bg-[#5b5c70] w-fit font-bold hover:bg-primary mt-4 text-white p-3 md:px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md"
               >
                 Clear Cart
               </button>
               <button
-                onClick={handleCheckout} // Handle checkout click
-                className="bg-[#5b5c70] w-fit font-bold hover:bg-primary mt-4 text-white p-3 px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md"
+                onClick={handleCheckout}
+                className="bg-[#5b5c70] w-fit font-bold hover:bg-primary mt-4 text-white p-3 md:px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md"
               >
                 CheckOut
               </button>
@@ -77,13 +79,7 @@ export default function CartPage() {
           </div>
         )}
       </div>
-
-      {/* Show login modal if the user is not logged in */}
-      {showLoginPopup && (
-        <div className="fixed inset-0  flex flex-col text-3xl text-white items-center justify-center bg-black bg-opacity-50 z-50">
-          <Login />
-        </div>
-      )}
+      {/* Show login popup if necessary */}
     </section>
   );
 }

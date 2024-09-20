@@ -15,9 +15,8 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useCart } from '../context/cartContext'; 
 import { useOrder } from '../context/orderContext'; // Adjust path
 
-
 export default function Navbar() {
-  const {  itemCount } = useCart();
+  const { itemCount } = useCart();
   const { orderId } = useOrder(); // Access orderId from context
 
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +24,7 @@ export default function Navbar() {
   const [isViewSearch, setIsViewSearch] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const timeoutRef = useRef(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) {
@@ -77,31 +77,18 @@ export default function Navbar() {
   useEffect(() => {
     console.log("Current Order ID:", orderId);
   }, [orderId]);
-  
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(prev => !prev);
+  };
+
   return (
     <nav className={`w-full transition-opacity duration-300`}>
-      <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto md:px-12 p-4">
+      <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto lg:px-12 p-4">
         <Logo />
-        <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <div className="flex  justify-start items-center gap-3">
-            {/* <div className="group hover:cursor-pointer">
-              <CiSearch
-                onClick={handleSearch}
-                size={34}
-                className="text-black group-hover:text-primary transition-colors duration-300"
-              />
-            </div> */}
-
-            {/* {isViewSearch && (
-              <div className="h-12 left-0 z-40 top-24 w-[100vw] bg-[#e1e0dd]/30 md:bg-[#e1e0dd]/50 absolute flex items-center justify-center">
-                <input
-                  type="text"
-                  placeholder="Search for products..."
-                  className="w-[70%] md:max-w-md px-4 py-1 focus:outline-none focus:ring-0 focus:border-gray-300 placeholder:text-sm rounded"
-                />
-              </div>
-            )} */}
-
+        <div className="flex md:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
+          <div className="flex justify-start items-center gap-3">
             <div className="relative">
               <MdOutlineAccountCircle
                 size={34}
@@ -110,7 +97,7 @@ export default function Navbar() {
                 onMouseLeave={handleHoverOut}
               />
               {isView && (
-                <div className="bg-white rounded-md p-2 absolute shadow-md top-10 z-50 w-32 ">
+                <div className="bg-white rounded-md p-2 absolute shadow-md top-10 z-50 w-32">
                   <ul>
                     <Link href={`/myorders/${orderId}`}>
                       <li className="text-black flex gap-1 items-center font-medium hover:cursor-pointer hover:underline">
@@ -152,12 +139,12 @@ export default function Navbar() {
             </Link>
           </div>
 
+          {/* Mobile Menu Button */}
           <button
-            data-collapse-toggle="navbar-cta"
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            onClick={toggleMobileMenu}
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
             aria-controls="navbar-cta"
-            aria-expanded="false"
+            aria-expanded={isMobileMenuOpen}
           >
             <span className="sr-only">Open main menu</span>
             <svg
@@ -178,34 +165,26 @@ export default function Navbar() {
           </button>
         </div>
 
-        <div
-          className="items-center justify-between hidden w-full lg:flex md:w-auto md:order-1"
-          id="navbar-cta"
-        >
+       
+
+        <div className="items-center justify-between hidden w-full lg:flex md:w-auto md:order-1">
           <ul className="flex flex-col text-black font-medium p-4 md:p-0 mt-4 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
+            {/* Desktop Menu Items */}
             <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
               <Link href="/">
                 <span>Home</span>
               </Link>
             </li>
-
             <li>
-              <div
-                className="relative inline-block text-left"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Link href={'/allproducts'}>
-                  <button
-                    className="text-black hover:text-primary transition-all duration-500 ease-in-out hover:underline font-medium rounded-lg text-center inline-flex items-center"
-                    type="button"
-                  >
-                    All products
-                  </button>
-                </Link>
-              </div>
+              <Link href="/allproducts">
+                <button
+                  className="text-black hover:text-primary transition-all duration-500 ease-in-out hover:underline font-medium rounded-lg text-center inline-flex items-center"
+                  type="button"
+                >
+                  All products
+                </button>
+              </Link>
             </li>
-
             <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
               <Link href="/best-seller">
                 <span>Best Sellers</span>
@@ -234,6 +213,48 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
+       {/* Mobile Menu */}
+       {isMobileMenuOpen && (
+          <div className="lg:hidden transition-all duration-700 ease-in-out">
+            <ul className="flex flex-col text-black font-medium p-4 rounded-lg">
+              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
+                <Link href="/">
+                  <span>Home</span>
+                </Link>
+              </li>
+              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
+                <Link href="/allproducts">
+                  <span>All products</span>
+                </Link>
+              </li>
+              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
+                <Link href="/best-seller">
+                  <span>Best Sellers</span>
+                </Link>
+              </li>
+              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
+                <Link href="/mens">
+                  <span>Mens</span>
+                </Link>
+              </li>
+              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
+                <Link href="/womens">
+                  <span>Women's</span>
+                </Link>
+              </li>
+              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
+                <Link href="/kids">
+                  <span>Kids</span>
+                </Link>
+              </li>
+              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
+                <Link href="/about-us">
+                  <span>About us</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
     </nav>
   );
 }

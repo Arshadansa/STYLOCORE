@@ -115,7 +115,7 @@ export default function Checkout() {
   return (
     <section className="border-t border-b border-primary flex items-center justify-center flex-col p-3">
       <h2 className="text-2xl text-center font-bold mt-4">Checkout</h2>
-      <div className="my-24 w-[80%] border p-4 bg-white shadow-md rounded-md">
+      <div className="my-24 w-[90%] md:w-[80%] border p-4 bg-white shadow-md rounded-md">
         {success ? (
           <div className="text-center flex flex-col gap-3">
             <h3 className="text-2xl font-bold text-green-500">

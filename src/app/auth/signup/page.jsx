@@ -54,10 +54,10 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="py-14 border-primary border bg-white flex items-center justify-center px-4 sm:px-6 lg:px-8">
-    <div className="w-1/3 space-y-2">
+    <div className="py-32 lg:py-24 border-primary border-t border-b bg-white flex gap-10 lg:gap-0 flex-col md:flex-row items-center justify-center px-3 sm:px-3 lg:px-6">
+    <div className="md:w-1/3 space-y-2">
       <div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-center text-lg  lg:text-3xl font-extrabold text-gray-900">
           Create your Account
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
@@ -98,7 +98,7 @@ export default function SignUpForm() {
               required
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-none focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+              className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-none focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
               placeholder="Full Name"
             />
           </div>
@@ -169,7 +169,7 @@ export default function SignUpForm() {
         </div>
       </div>
     </div>
-    <div className="w-1/2 flex items-center justify-center">
+    <div className="md:w-1/2 flex items-center justify-center">
       <Image
         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/authentication/illustration.svg"
         width={500}

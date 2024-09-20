@@ -6,20 +6,21 @@ import { fetchProductById } from "../../lib/firebase"; // Import Firebase functi
 import { useCart } from "../../context/cartContext";
 import Image from "next/image";
 import { FaIndianRupeeSign } from "react-icons/fa6";
-import Link from "next/link";
-import Loader from "../../Components/loader/Loader"
+import Loader from "../../Components/loader/Loader";
 import NoProduct from "@/app/Components/loader/NoProduct";
 
 export default function SingleProduct() {
   const router = useRouter();
-  const { addToCart } = useCart();
+  const { addToCart, cart } = useCart(); // Access cart context
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [imageLoading, setImageLoading] = useState(true); // New state for image loading
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   const [price, setPrice] = useState(null);
+  const [isAdded, setIsAdded] = useState(false); // Track if product is added to cart
 
   const params = useParams(); // Access URL parameters
   const { productId } = params; // Fetch 'productId' from URL
@@ -61,6 +62,14 @@ export default function SingleProduct() {
     getProduct();
   }, [productId]);
 
+  // Check if the product is already added to the cart
+  useEffect(() => {
+    const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+    if (cartProducts.includes(productId)) {
+      setIsAdded(true);
+    }
+  }, [productId]);
+
   useEffect(() => {
     if (selectedColor && selectedSize) {
       setPrice(selectedColor.sizes_inventory[selectedSize]?.price || 0);
@@ -84,38 +93,46 @@ export default function SingleProduct() {
         size: selectedSize,
         price: price,
       };
+  
+      // Call addToCart with the selected product
       addToCart(selectedProduct);
+      
+      // LocalStorage logic remains the same
+      const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+      if (!cartProducts.find(item => 
+        item.id === productId &&
+        item.color === selectedColor.color_name &&
+        item.size === selectedSize &&
+        item.price === price
+      )) {
+        cartProducts.push(selectedProduct);
+        localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+      }
     }
   };
-
+  
   const handleCheckout = () => {
     router.push(`/cart`);
   };
 
+  const handleImageLoadComplete = () => {
+    setImageLoading(false);
+  };
+
   if (loading) {
-    return (
-    <Loader/>
-    );
+    return <Loader />;
   }
 
   if (error) {
-    return (
-     <NoProduct/>
-    );
+    return <NoProduct />;
   }
 
   if (!product) {
-    return (
-      <div className="fixed inset-0 flex flex-col text-3xl text-white items-center justify-center bg-black bg-opacity-50 z-50">
-        <p>No product data available.</p>
-        <Link href="/allproducts">
-          <button className="bg-[#5b5c70] font-bold hover:underline hover:bg-primary text-white p-3 px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md mt-4">
-            Continue Shopping
-          </button>
-        </Link>
-      </div>
-    );
+    return <NoProduct />;
   }
+
+  // Check if the cart is empty
+  const isCartEmpty = cart.length === 0;
 
   return (
     <section className="max-w-screen-xl my-20 mx-auto p-6">
@@ -124,6 +141,8 @@ export default function SingleProduct() {
           <div className="md:w-1/2">
             {/* Image Gallery */}
             <div className="relative w-full ">
+              {imageLoading && <Loader />}{" "}
+              {/* Show loader until images are loaded */}
               {selectedColor?.images.map((img, index) => (
                 <Image
                   key={index}
@@ -132,13 +151,14 @@ export default function SingleProduct() {
                   src={img || "/path/to/default-image.jpg"} // Fallback to default image if none provided
                   alt={`Product Image ${index + 1}`}
                   className="object-contain rounded-lg w-full h-full"
+                  onLoadingComplete={handleImageLoadComplete} // Handle image load complete
                 />
               ))}
             </div>
           </div>
           <div className="md:w-1/2 ">
             <h2 className="text-3xl font-bold mb-4">{product.name}</h2>
-            <p className="text-lg  text-gray-700 mb-4">{product.description}</p>
+            <p className="text-lg text-gray-700 mb-4">{product.description}</p>
             {selectedColor && (
               <p className="text-lg flex items-center font-semibold mb-4">
                 Price:&nbsp;
@@ -155,9 +175,7 @@ export default function SingleProduct() {
                     <div
                       key={index}
                       className={`flex p-1 items-center space-x-2 cursor-pointer ${
-                        selectedColor === color
-                          ? "border-2 border-gray-300"
-                          : ""
+                        selectedColor === color ? "" : ""
                       }`}
                       onClick={() => {
                         setSelectedColor(color);
@@ -181,7 +199,39 @@ export default function SingleProduct() {
                 </div>
               </div>
             )}
-
+            {product.dimensions && (
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold mb-2">Dimensions:</h3>
+                <table className="w-full border-collapse border border-gray-200">
+                  <tbody>
+                    <tr>
+                      <td className="border border-gray-300 p-1 font-semibold">
+                        Length:
+                      </td>
+                      <td className="border border-gray-300 p-1">
+                        {product.dimensions.length} cm
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 p-1 font-semibold">
+                        Width:
+                      </td>
+                      <td className="border border-gray-300 p-1">
+                        {product.dimensions.width} cm
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 p-1 font-semibold">
+                        Height:
+                      </td>
+                      <td className="border border-gray-300 p-1">
+                        {product.dimensions.height} cm
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
             {selectedColor?.sizes_inventory && (
               <div className="mb-4">
                 <h3 className="text-xl font-semibold mb-2">
@@ -222,40 +272,6 @@ export default function SingleProduct() {
                 </table>
               </div>
             )}
-            {/* Dimensions */}
-            {product.dimensions && (
-              <div className="mb-4">
-                <h3 className="text-xl font-semibold mb-2">Dimensions:</h3>
-                <table className="w-full border-collapse border border-gray-200">
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-300 p-1 font-semibold">
-                        Length:
-                      </td>
-                      <td className="border border-gray-300 p-1">
-                        {product.dimensions.length} cm
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 p-1 font-semibold">
-                        Width:
-                      </td>
-                      <td className="border border-gray-300 p-1">
-                        {product.dimensions.width} cm
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 p-1 font-semibold">
-                        Height:
-                      </td>
-                      <td className="border border-gray-300 p-1">
-                        {product.dimensions.height} cm
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            )}
 
             {/* Quantity Selector */}
             <div className="flex items-center mb-4">
@@ -275,18 +291,24 @@ export default function SingleProduct() {
                 +
               </button>
             </div>
-            <div className="flex">
+
+            {/* Add to Cart and Checkout Buttons */}
+            <div className="flex gap-2">
               <button
+                className="bg-[#5b5c70] w-fit font-bold hover:bg-primary mt-4 text-white p-3 md:px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md"
                 onClick={handleAddToCart}
-                className="bg-[#5b5c70] font-bold mr-3 hover:underline hover:bg-primary mt-1 text-white p-3 px-5 md:px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md"
               >
-                Add to Cart
+                {isCartEmpty
+                  ? "Add to Cart"
+                  : isAdded
+                  ? "Added"
+                  : "Add to Cart"}
               </button>
               <button
+                className="bg-[#5b5c70] w-fit font-bold hover:bg-primary mt-4 text-white p-3 md:px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md"
                 onClick={handleCheckout}
-                className="bg-[#5b5c70] font-bold hover:underline hover:bg-primary mt-1 text-white p-3 px-5 md:px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md"
               >
-                Checkout
+                Buy Now
               </button>
             </div>
           </div>
