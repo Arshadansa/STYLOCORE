@@ -3,9 +3,9 @@ import "./globals.css";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer/Footer";
 import { CartProvider } from "./context/cartContext";
-import CartPopup from "./Components/cartPopUp";
+import CartPopup from "./Components/cartPopup";
 import { OrderProvider } from "./context/orderContext";
-import { AuthProvider } from "./context/authContext"; // Adjust the path as needed
+import { AuthProvider } from "./context/authContext"; 
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
