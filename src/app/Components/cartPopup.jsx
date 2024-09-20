@@ -14,7 +14,7 @@ const CartPopup = () => {
       setVisible(true);
       const timer = setTimeout(() => {
         setVisible(false);
-      }, 100); // Popup will disappear after 3 seconds
+      }, 1000); // Popup will disappear after 3 seconds
 
       return () => clearTimeout(timer);
     }

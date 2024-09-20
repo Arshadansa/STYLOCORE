@@ -22,7 +22,7 @@ export default function Promotions() {
             src="/images/portrait-woman-winter-clothing.avif" // Ensure this image exists in the 'public/images/promotions' folder
             alt="winter collection"
             fill
-            sizes="(min-width: 768px) 100vw, 867px"
+            sizes="(min-width: 768px) 90vw, 867px"
             className="object-cover"
           />
         </Parallax>

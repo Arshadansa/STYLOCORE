@@ -7,7 +7,7 @@ export default function Logo() {
     <div>
       <Link href="/">
         <span className="flex items-center space-x-3 rtl:space-x-reverse">
-          <Image
+          <img
             src="/images/3.png"
             alt="Logo"
             className="object-cover"
