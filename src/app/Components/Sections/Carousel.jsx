@@ -6,12 +6,15 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Loader from "../loader/Loader";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
+import { ClipLoader } from "react-spinners";
 
 export default function Carousel({ products }) {
   const router = useRouter();
   const carouselRef = useRef(null);
 
-  const [loadingImages, setLoadingImages] = useState(Array(products.length).fill(true));
+  const [loadingImages, setLoadingImages] = useState(
+    Array(products.length).fill(true)
+  );
   const [isAtStart, setIsAtStart] = useState(true);
   const [isAtEnd, setIsAtEnd] = useState(false);
 
@@ -44,10 +47,11 @@ export default function Carousel({ products }) {
     if (carousel) {
       // Set isAtStart to true if scrollLeft is 0
       setIsAtStart(carousel.scrollLeft === 0);
-      
+
       // Check if we've reached the end by comparing scrollLeft + clientWidth with scrollWidth
       setIsAtEnd(
-        Math.ceil(carousel.scrollLeft + carousel.clientWidth) >= carousel.scrollWidth
+        Math.ceil(carousel.scrollLeft + carousel.clientWidth) >=
+          carousel.scrollWidth
       );
     }
   };
@@ -130,7 +134,9 @@ export default function Carousel({ products }) {
             </div>
           ))
         ) : (
-          <Loader />
+          <div className=" flex items-center justify-center bg-opacity-50 ">
+            <ClipLoader color="#ffffff" size={80} />
+          </div>
         )}
       </div>
 

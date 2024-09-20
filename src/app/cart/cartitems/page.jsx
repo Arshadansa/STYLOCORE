@@ -21,7 +21,7 @@ export default function CartItem({ item, removeFromCart }) {
   };
 
   // Get the appropriate image based on the selected color
-  const colorData = item.colors.find(
+  const colorData = item?.colors?.find(
     (color) => color.color_name.toLowerCase() === item.color.toLowerCase()
   );
   const imageUrl = colorData ? colorData.images[0] : "";

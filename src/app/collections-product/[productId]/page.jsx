@@ -93,24 +93,28 @@ export default function SingleProduct() {
         size: selectedSize,
         price: price,
       };
-  
+
       // Call addToCart with the selected product
       addToCart(selectedProduct);
-      
+
       // LocalStorage logic remains the same
-      const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
-      if (!cartProducts.find(item => 
-        item.id === productId &&
-        item.color === selectedColor.color_name &&
-        item.size === selectedSize &&
-        item.price === price
-      )) {
+      const cartProducts =
+        JSON.parse(localStorage.getItem("cartProducts")) || [];
+      if (
+        !cartProducts.find(
+          (item) =>
+            item.id === productId &&
+            item.color === selectedColor.color_name &&
+            item.size === selectedSize &&
+            item.price === price
+        )
+      ) {
         cartProducts.push(selectedProduct);
         localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
       }
     }
   };
-  
+
   const handleCheckout = () => {
     router.push(`/cart`);
   };
@@ -317,3 +321,4 @@ export default function SingleProduct() {
     </section>
   );
 }
+
