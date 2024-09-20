@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import TabContent from "../../Components/TabContent";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import Loader from "@/app/Components/loader/loader";
+import Loader from "../../Components/loader/Loader";
 import NoProduct from "@/app/Components/loader/NoProduct";
 
 export default function AllOrders() {

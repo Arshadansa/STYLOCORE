@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Products from "../Components/NewArrival/Products";
 import { fetchProductsByTag } from '../lib/firebase'; 
-import Loader from "../Components/Loader/Loader"; // Import your loader component
+import Loader from "../Components/loader/Loader"; // Import your loader component
 
 export default function BestSeller() {
   const [products, setProducts] = useState([]);

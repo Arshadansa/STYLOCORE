@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import Products from "../Components/NewArrival/Products";
 import { fetchProductsByTag } from '../lib/firebase'; 
-import Loader from "../Components/Loader/Loader"; // Import your loader component
+import Loader from "../Components/loader/Loader"; 
 
 export default function Womens() {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true); 
   const gender = "Women"; // Default gender
 
   useEffect(() => {

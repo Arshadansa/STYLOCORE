@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FaIndianRupeeSign } from "react-icons/fa6";
-import Loader from "../loader/loader";
+import Loader from "../loader/Loader";
 
 export default function Carousel({ products }) {
   const carouselRef = useRef(null);

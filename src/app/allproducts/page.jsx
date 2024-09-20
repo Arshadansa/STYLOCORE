@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import Products from "../Components/NewArrival/Products";
 import { fetchAllProducts } from "../lib/firebase"; // Fetch all products
-import { ClipLoader } from "react-spinners"; // Import a spinner from react-spinners
-import Loader from "../Components/loader/loader";
+import Loader from "../Components/loader/Loader";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
