@@ -1,7 +1,6 @@
 "use client";
 
 // next
-import Image from "next/image";
 import Link from "next/link";
 
 // react-scroll-parallax
@@ -18,23 +17,19 @@ export default function Promotions() {
           speed={-50}
           className="relative hidden h-full w-full sm:block"
         >
-          <Image
-            src="/images/portrait-woman-winter-clothing.avif" // Ensure this image exists in the 'public/images/promotions' folder
+          <img
+            src="/images/portrait-woman-winter-clothing.avif" // Ensure this image exists in the 'public/images' folder
             alt="winter collection"
-            fill
-            sizes="(min-width: 768px) 90vw, 867px"
-            className="object-cover"
+            className="object-cover w-full h-full"
           />
         </Parallax>
 
         {/* Static Image for Mobile */}
         <div className="relative block h-full w-full sm:hidden">
-          <Image
+          <img
             src="/images/portrait-woman-winter-clothing.avif"
             alt="winter collection"
-            fill
-            sizes="(min-width: 768px) 100vw, 867px"
-            className="object-cover"
+            className="object-cover w-full h-full"
           />
         </div>
 
@@ -50,7 +45,7 @@ export default function Promotions() {
             collection!
           </p>
           <Link href={"/about-us"}>
-            <button className="bg-[#5b5c70] font-bold hover:underline hover:bg-primary  text-white p-3 px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md">
+            <button className="bg-[#5b5c70] font-bold hover:underline hover:bg-primary text-white p-3 px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md">
               About Us
             </button>
           </Link>
