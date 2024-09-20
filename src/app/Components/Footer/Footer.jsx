@@ -10,7 +10,7 @@ import { FaTiktok } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-white w-full flex items-center dark:bg-gray-900">
+    <footer className="bg-white w-full p-4 lg:p-0 flex items-center dark:bg-gray-900">
       <div className="mx-auto  w-full    max-w-screen-xl">
         <div className="grid grid-cols-1 py-6 lg:pl-7 md:justify-items-center  md:grid-cols-4">
           <div className="">
@@ -29,10 +29,10 @@ export default function Footer() {
                 </Link>
               </li>
               <li className="mb-2 flex md:flex-row flex-col md:items-center gap-1">
-                <Link href="#" className=" hover:underline text-gray-500 ">
+                <Link href="/allproducts" className=" hover:underline text-gray-500 ">
                   All Products
                 </Link>
-                <Link href="#" className=" hover:underline text-gray-300 ">
+                {/* <Link href="#" className=" hover:underline text-gray-300 ">
                   Products 1
                 </Link>
                 <Link href="#" className=" hover:underline text-gray-300 ">
@@ -43,7 +43,7 @@ export default function Footer() {
                 </Link>
                 <Link href="#" className=" hover:underline text-gray-300 ">
                   Products 4
-                </Link>
+                </Link> */}
               </li>
               <li className="mb-2">
                 <Link href="/best-seller" className="hover:underline">

@@ -9,34 +9,32 @@ const CartPopup = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if (notification.type) {
+    if (notification?.type) {
       setMessage(notification.message);
       setVisible(true);
       const timer = setTimeout(() => {
         setVisible(false);
-      }, 3000); // Popup will disappear after 3 seconds
+      }, 100); // Popup will disappear after 3 seconds
 
       return () => clearTimeout(timer);
     }
   }, [notification]);
 
-  let popupStyle;
-  switch (notification.type) {
-    case "add":
-      popupStyle = "bg-green-500"; // Success
-      break;
-    case "remove":
-      popupStyle = "bg-red-500"; // Error
-      break;
-    case "update":
-      popupStyle = "bg-yellow-500"; // Warning
-      break;
-    case "clear":
-      popupStyle = "bg-blue-500"; // Info
-      break;
-    default:
-      popupStyle = "bg-gray-500"; // Default
-  }
+  // Define popupStyle with a default value
+  const popupStyle = (() => {
+    switch (notification?.type) {
+      case "add":
+        return "bg-green-500"; // Success
+      case "remove":
+        return "bg-red-500"; // Error
+      case "update":
+        return "bg-yellow-500"; // Warning
+      case "clear":
+        return "bg-blue-500"; // Info
+      default:
+        return "bg-gray-500"; // Default
+    }
+  })();
 
   return (
     visible && (

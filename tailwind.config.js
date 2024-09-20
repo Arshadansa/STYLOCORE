@@ -10,10 +10,11 @@ module.exports = {
     extend: {
       
       colors: {
-        primary: "#9896bc",
+        primary: "#9d9cc8",
         silder: "#2d2d35",
         aboutsection:"#dfdeec",
-        secondary:"#5e5c70"
+        secondary:"#5e5c70",
+        productPrice:"#65666a"
       },
     },
     

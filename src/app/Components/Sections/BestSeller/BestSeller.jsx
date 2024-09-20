@@ -1,144 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Carousel from "../Carousel";
-const categories = ["Mens", "Womens", "Kids", "BestSellers"];
+import { fetchProductsByTag } from "../../../lib/firebase"; // Ensure this fetch function is correct
 
-const products = {
-  BestSellers: [
-    {
-      id: 1,
-      rank: "1st",
-      name: "Clear Earrings",
-      price: "¥20,900",
-      image: "/images/earrings.jpg",
-    },
-    {
-      id: 2,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-    {
-      id: 3,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-    {
-      id: 4,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-  ],
-  Kids: [
-    {
-      id: 1,
-      rank: "1st",
-      name: "Clear Earrings",
-      price: "¥20,900",
-      image: "/images/earrings.jpg",
-    },
-    {
-      id: 2,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-    {
-      id: 3,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-    {
-      id: 4,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-  ],
-  Womens: [
-    {
-      id: 1,
-      rank: "1st",
-      name: "Clear Earrings",
-      price: "¥20,900",
-      image: "/images/earrings.jpg",
-    },
-    {
-      id: 2,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-    {
-      id: 3,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-    {
-      id: 4,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-  ],
-  Mens: [
-    {
-      id: 1,
-      rank: "1st",
-      name: "Clear Earrings",
-      price: "¥20,900",
-      image: "/images/earrings.jpg",
-    },
-    {
-      id: 2,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-    {
-      id: 3,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-    {
-      id: 4,
-      rank: "2nd",
-      name: "Pearl Emotion Bracelet",
-      price: "¥16,500",
-      image: "/images/bracelet.jpg",
-    },
-  ],
-};
+const categories = ["Men", "Women", "Kids", "BestSeller"];
 
 export default function BestSellers() {
-  const [activeCategory, setActiveCategory] = useState("BestSellers");
+  const [gender, setGender] = useState("Men");
+  const [products, setProducts] = useState([]);
 
   const handleCategoryChange = (category) => {
-    setActiveCategory(category);
+    setGender(category);
   };
 
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const fetchedProducts = await fetchProductsByTag(gender);
+        setProducts(fetchedProducts);
+        console.log(fetchedProducts); // Check what is being fetched
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    getProducts();
+  }, [gender]);
+
   return (
-    <section className="p-6 max-w-screen-lg mx-auto ">
+    <section className="md:my-32 my-12 p-4 max-w-screen-lg mx-auto">
       <div className="flex items-center gap-5 flex-wrap justify-between">
         <div>
-          <h2 className="text-4xl font-semibold text-center ">Best Sellers</h2>
+          <h2 className="text-4xl font-semibold text-center">Best Sellers</h2>
         </div>
 
         {/* Tab Navigation */}
@@ -148,8 +42,8 @@ export default function BestSellers() {
               key={category}
               onClick={() => handleCategoryChange(category)}
               className={`pb-2 ${
-                activeCategory === category
-                  ? "text-indigo-500  border-b-2 border-indigo-500"
+                gender === category
+                  ? "text-indigo-500 border-b-2 border-indigo-500"
                   : "text-gray-500"
               }`}
             >
@@ -160,8 +54,7 @@ export default function BestSellers() {
       </div>
 
       {/* Product Slider */}
-
-      <Carousel products={products[activeCategory]} category={activeCategory} />
+      <Carousel products={products} category={gender} />
     </section>
   );
 }

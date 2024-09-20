@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import React, { createContext, useContext, useState, useMemo, useCallback, useEffect } from 'react';
+import  { createContext, useContext, useState, useMemo, useCallback, useEffect } from 'react';
 
 // Create the context
 const CartContext = createContext();
@@ -91,6 +91,7 @@ export const CartProvider = ({ children }) => {
     setNotification({ type: 'clear', message: 'Cart cleared' });
   }, []);
 
+
   const value = useMemo(() => ({
     cart,
     addToCart,
@@ -98,8 +99,9 @@ export const CartProvider = ({ children }) => {
     clearCart,
     totalPrice: calculateTotalPrice(cart),
     itemCount: calculateItemCount(cart),
-    notification
-  }), [cart, addToCart, removeFromCart, clearCart, notification]);
+    notification,
+
+  }), [cart, addToCart, removeFromCart, clearCart, notification, ]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

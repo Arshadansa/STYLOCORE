@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function Returns() {
   return (
-    <section className='border-primary border'>
+    <section className='border-primary border-t border-b'>
       <Head>
         <title>Returns, Exchanges & Refunds</title>
         <meta name="description" content="Information on returns, exchanges, and refunds" />

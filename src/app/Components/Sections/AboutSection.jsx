@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function AboutSection() {
@@ -16,9 +17,11 @@ export default function AboutSection() {
           At Stylacor, we are dedicated to crafting exceptional fashion that
           transcends trends and speaks to the essence of individuality.
         </p>
-        <button className="bg-[#5b5c70] font-bold hover:underline hover:bg-primary mt-12 text-white p-3 px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md">
-          About Us
-        </button>
+        <Link href="/about-us">
+          <button className="bg-[#5b5c70] font-bold hover:underline hover:bg-primary mt-12 text-white p-3 px-7 hover:scale-95 transition-all duration-700 ease-in-out rounded-md">
+            About Us
+          </button>
+        </Link>
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline
 
 export default function Contact() {
   return (
-    <section className='border-primary border'>
+    <section className='border-primary border-t border-b'>
       <Head>
         <title>Contact Us</title>
         <meta name="description" content="Contact us for any questions or queries." />
