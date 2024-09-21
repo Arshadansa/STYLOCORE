@@ -8,12 +8,17 @@ import { CiSearch } from "react-icons/ci";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { BiLogOutCircle } from "react-icons/bi";
-import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 import { auth } from "../lib/firebase";
 import Logo from "./Logo";
 import { FaShoppingCart } from "react-icons/fa";
-import { useCart } from '../context/cartContext'; 
-import { useOrder } from '../context/orderContext'; // Adjust path
+import { useCart } from "../context/cartContext";
+import { useOrder } from "../context/orderContext"; // Adjust path
 
 export default function Navbar() {
   const { itemCount } = useCart();
@@ -80,7 +85,7 @@ export default function Navbar() {
 
   // Toggle mobile menu
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(prev => !prev);
+    setIsMobileMenuOpen((prev) => !prev);
   };
 
   return (
@@ -165,8 +170,6 @@ export default function Navbar() {
           </button>
         </div>
 
-       
-
         <div className="items-center justify-between hidden w-full lg:flex md:w-auto md:order-1">
           <ul className="flex flex-col text-black font-medium p-4 md:p-0 mt-4 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
             {/* Desktop Menu Items */}
@@ -213,48 +216,69 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
-       {/* Mobile Menu */}
-       {isMobileMenuOpen && (
-          <div className="lg:hidden transition-all duration-100 ease-in-out">
-            <ul className="flex text-lg flex-col text-black font-medium p-4 rounded-lg">
-              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
-                <Link href="/">
-                  <span>Home</span>
-                </Link>
-              </li>
-              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
-                <Link href="/allproducts">
-                  <span>All products</span>
-                </Link>
-              </li>
-              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
-                <Link href="/best-seller">
-                  <span>Best Sellers</span>
-                </Link>
-              </li>
-              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
-                <Link href="/mens">
-                  <span>Mens</span>
-                </Link>
-              </li>
-              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
-                <Link href="/womens">
-                  <span>Women's</span>
-                </Link>
-              </li>
-              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
-                <Link href="/kids">
-                  <span>Kids</span>
-                </Link>
-              </li>
-              <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
-                <Link href="/about-us">
-                  <span>About us</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        )}
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden transition-all duration-100 ease-in-out">
+          <ul className="flex text-lg flex-col text-black font-medium p-4 rounded-lg">
+            <li
+              onClick={toggleMobileMenu}
+              className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out"
+            >
+              <Link href="/">
+                <span>Home</span>
+              </Link>
+            </li>
+            <li
+              onClick={toggleMobileMenu}
+              className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out"
+            >
+              <Link href="/allproducts">
+                <span>All products</span>
+              </Link>
+            </li>
+            <li
+              onClick={toggleMobileMenu}
+              className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out"
+            >
+              <Link href="/best-seller">
+                <span>Best Sellers</span>
+              </Link>
+            </li>
+            <li
+              onClick={toggleMobileMenu}
+              className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out"
+            >
+              <Link href="/mens">
+                <span>Mens</span>
+              </Link>
+            </li>
+            <li
+              onClick={toggleMobileMenu}
+              className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out"
+            >
+              <Link href="/womens">
+                <span>Women's</span>
+              </Link>
+            </li>
+            <li
+              onClick={toggleMobileMenu}
+              className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out"
+            >
+              <Link href="/kids">
+                <span>Kids</span>
+              </Link>
+            </li>
+            <li
+              onClick={toggleMobileMenu}
+              className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out"
+            >
+              <Link href="/about-us">
+                <span>About us</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
     </nav>
   );
 }
