@@ -166,7 +166,7 @@ const TabContent = ({ activeTab, orders }) => {
 
       {showCallPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-lg p-6 max-w-xs sm:max-w-md w-full mx-4">
+          <div className="bg-white rounded-lg p-6 max-w-xs sm:max-w-xl w-full mx-4">
             <h2 className="text-lg font-semibold">Cancel Order</h2>
             <p className="text-sm sm:text-base">
               You cannot cancel the order{" "}

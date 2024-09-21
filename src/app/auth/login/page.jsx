@@ -41,7 +41,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex p-5 items-center border-primary border-t border-b justify-center bg-gray-50">
+    <div className="py-24 lg:min-h-screen flex p-5 items-center border-primary border-t border-b justify-center bg-gray-50">
       <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-8 sm:p-12 flex">
         <div className="hidden sm:flex flex-col w-1/2 gap-10 p-6">
           <div className="flex items-center gap-3">

@@ -22,16 +22,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export const firestore = getFirestore(app); 
 
-// Get Auth and Firestore instances
+// Get Auth instance
 export const auth = getAuth(app);
-export const firestore = getFirestore(app); // Export Firestore instance
 
 export const fetchAllProducts = async () => {
   try {
     const productsRef = collection(firestore, "products");
-    
-    // Fetch all documents in the "products" collection
     const querySnapshot = await getDocs(productsRef);
 
     const products = querySnapshot.docs.map((doc) => ({
@@ -48,11 +46,11 @@ export const fetchAllProducts = async () => {
 
 export const fetchProductById = async (productId) => {
   try {
-    const docRef = doc(firestore, "products", productId); // Use the correct Firestore instance
-    const productSnap = await getDoc(docRef); // Fetch the document from Firestore
+    const docRef = doc(firestore, "products", productId);
+    const productSnap = await getDoc(docRef);
 
     if (productSnap.exists()) {
-      return productSnap.data(); // Return the product data
+      return productSnap.data();
     } else {
       console.error(`Product with ID ${productId} does not exist.`);
       throw new Error("Product not found");
@@ -82,11 +80,9 @@ export const fetchProductsByTag = async (tag) => {
   }
 };
 
-
 export const fetchOrdersForEmail = async (emailId) => {
   try {
     const ordersRef = collection(firestore, "orders");
-    // Update the query to search by emailId instead of userId
     const q = query(ordersRef, where("email", "==", emailId));
 
     const querySnapshot = await getDocs(q);
@@ -98,6 +94,30 @@ export const fetchOrdersForEmail = async (emailId) => {
     return orders;
   } catch (error) {
     console.error("Error fetching orders: ", error);
+    return [];
+  }
+};
+
+
+export const fetchRecentProducts = async (tags) => {
+  if (!tags || tags.length === 0) {
+    return []; // Return early if no tags
+  }
+
+  try {
+    const productsRef = collection(firestore, "products");
+    const q = query(productsRef, where("tags", "array-contains-any", tags));
+    const querySnapshot = await getDocs(q);
+
+    const products = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    console.log("Fetched Recent Products:", products); // Log fetched products
+    return products;
+  } catch (error) {
+    console.error("Error fetching recent products:", error);
     return [];
   }
 };

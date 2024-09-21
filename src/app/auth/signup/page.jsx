@@ -54,8 +54,8 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="py-32 lg:py-24 border-primary border-t border-b bg-white flex gap-10 lg:gap-0 flex-col md:flex-row items-center justify-center px-3 sm:px-3 lg:px-6">
-    <div className="md:w-1/3 space-y-2">
+    <div className="py-12 lg:py-24 border-primary border-t border-b bg-white flex gap-10 lg:gap-0 flex-col md:flex-row items-center justify-center px-3 sm:px-3 lg:px-6">
+    <div className="md:w-1/3 w-[90%] space-y-2">
       <div>
         <h2 className="mt-6 text-center text-lg  lg:text-3xl font-extrabold text-gray-900">
           Create your Account
@@ -169,7 +169,7 @@ export default function SignUpForm() {
         </div>
       </div>
     </div>
-    <div className="md:w-1/2 flex items-center justify-center">
+    <div className="md:w-1/2 w-[90%] flex items-center justify-center">
       <Image
         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/authentication/illustration.svg"
         width={500}

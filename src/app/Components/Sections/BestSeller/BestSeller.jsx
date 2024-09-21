@@ -36,7 +36,7 @@ export default function BestSellers() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex justify-center space-x-6">
+        <div className="flex justify-center space-x-4 items-center md:space-x-6">
           {categories.map((category) => (
             <button
               key={category}

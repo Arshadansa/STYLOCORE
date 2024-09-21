@@ -215,8 +215,8 @@ export default function Navbar() {
       </div>
        {/* Mobile Menu */}
        {isMobileMenuOpen && (
-          <div className="lg:hidden transition-all duration-700 ease-in-out">
-            <ul className="flex flex-col text-black font-medium p-4 rounded-lg">
+          <div className="lg:hidden transition-all duration-100 ease-in-out">
+            <ul className="flex text-lg flex-col text-black font-medium p-4 rounded-lg">
               <li className="hover:underline hover:text-[#9896bc] transition-all duration-500 ease-in-out">
                 <Link href="/">
                   <span>Home</span>

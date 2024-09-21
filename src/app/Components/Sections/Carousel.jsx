@@ -37,7 +37,7 @@ export default function Carousel({ products }) {
   const handleImageLoad = (index) => {
     setLoadingImages((prev) => {
       const newLoadingImages = [...prev];
-      newLoadingImages[index] = false; // Set loading state to false for this index
+      newLoadingImages[index] = false;
       return newLoadingImages;
     });
   };
@@ -45,10 +45,7 @@ export default function Carousel({ products }) {
   const handleScroll = () => {
     const carousel = carouselRef.current;
     if (carousel) {
-      // Set isAtStart to true if scrollLeft is 0
       setIsAtStart(carousel.scrollLeft === 0);
-
-      // Check if we've reached the end by comparing scrollLeft + clientWidth with scrollWidth
       setIsAtEnd(
         Math.ceil(carousel.scrollLeft + carousel.clientWidth) >=
           carousel.scrollWidth
@@ -59,12 +56,9 @@ export default function Carousel({ products }) {
   useEffect(() => {
     const carousel = carouselRef.current;
     if (carousel) {
-      // Add scroll event listener to track scrolling
       carousel.addEventListener("scroll", handleScroll);
-      // Call handleScroll initially to set the correct arrow visibility
       handleScroll();
 
-      // Cleanup on unmount
       return () => {
         carousel.removeEventListener("scroll", handleScroll);
       };
@@ -84,7 +78,7 @@ export default function Carousel({ products }) {
 
       <div
         ref={carouselRef}
-        className="flex gap-4 items-start justify-center md:justify-normal md:items-start md:px-28 md:gap-8 overflow-x-auto scroll-smooth mt-5"
+        className="flex gap-4 items-start justify-center md:justify-normal md:items-start md:px-28 md:gap-8 overflow-x-auto scrollbar-hidden mt-5"
       >
         {products.length > 0 ? (
           products.map((product, index) => (
@@ -109,7 +103,7 @@ export default function Carousel({ products }) {
                   }
                   alt={product.name}
                   className="rounded-3xl hover:cursor-pointer mx-auto mb-4"
-                  onLoadingComplete={() => handleImageLoad(index)} // Call this when the image has finished loading
+                  onLoadingComplete={() => handleImageLoad(index)}
                 />
               </div>
               <div className="flex px-2 gap-1 mt-2">
@@ -134,7 +128,7 @@ export default function Carousel({ products }) {
             </div>
           ))
         ) : (
-          <div className=" flex items-center justify-center bg-opacity-50 ">
+          <div className="flex items-center justify-center bg-opacity-50 ">
             <ClipLoader color="#ffffff" size={80} />
           </div>
         )}
