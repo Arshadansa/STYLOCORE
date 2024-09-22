@@ -1,9 +1,7 @@
 "use client";
 
-// next
 import Link from "next/link";
 
-// react-scroll-parallax
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 export default function Promotions() {
@@ -18,7 +16,7 @@ export default function Promotions() {
           className="relative hidden h-full w-full sm:block"
         >
           <img
-            src="/images/portrait-woman-winter-clothing.avif" // Ensure this image exists in the 'public/images' folder
+            src="https://res.cloudinary.com/dxziq8zr8/image/upload/v1726984111/ijm9st40vnbedai6qjci.avif"
             alt="winter collection"
             className="object-cover w-full h-full"
           />
@@ -27,7 +25,7 @@ export default function Promotions() {
         {/* Static Image for Mobile */}
         <div className="relative block h-full w-full sm:hidden">
           <img
-            src="/images/portrait-woman-winter-clothing.avif"
+            src="https://res.cloudinary.com/dxziq8zr8/image/upload/v1726984111/ijm9st40vnbedai6qjci.avif"
             alt="winter collection"
             className="object-cover w-full h-full"
           />
