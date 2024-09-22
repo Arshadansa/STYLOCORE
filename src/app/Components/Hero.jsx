@@ -1,7 +1,8 @@
 "use client";
 
-import Logo from "./Logo";
-
+import Image from "next/image";
+import logo from "../../Assets/Images/logo.png"; 
+import videoSrcMp4 from "../../Assets/Video/clothing-shoot.mp4"; 
 
 export default function Hero() {
   return (
@@ -15,16 +16,14 @@ export default function Hero() {
           preload="auto"
           className="absolute h-full w-full object-cover"
         >
-          <source src="/videos/clothing-shoot.webm" type="video/webm" />
-          <source src="/videos/clothing-shoot.mp4" type="video/mp4" />
+          <source src={videoSrcMp4} type="video/mp4" /> {/* Make sure mp4 path is correct */}
+          Your browser does not support the video tag.
         </video>
         <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8">
-          <Logo />
+          {/* Use the Image component to render the logo */}
+          <Image src={logo} alt="Logo" width={100} height={100} /> {/* Adjust width and height accordingly */}
         </div>
       </div>
-    
     </section>
   );
 }
-
-

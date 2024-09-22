@@ -6,6 +6,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import googlelogo from "../../../Assets/Images/google.png"
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -159,7 +160,7 @@ export default function SignUpForm() {
             onClick={handleGoogleSignIn}
           >
             <Image
-              src="/images/google.png"
+              src={googlelogo}
               width={20}
               height={20}
               alt="Google logo"

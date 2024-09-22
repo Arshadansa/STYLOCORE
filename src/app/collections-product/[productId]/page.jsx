@@ -120,15 +120,19 @@ export default function SingleProduct() {
     }
   };
 
-  const handleCheckout = () => router.push(`/cart`);
+  const handleCheckout = () => {
+    if (isCartEmpty) {
+      handleAddToCart();
+    }
+   
+    router.push(`/cart`);
+  };
 
   const handleImageLoadComplete = () => setImageLoading(false);
 
   const handleNavigation = (productId) => {
-   
     router.push(`/collections-product/${productId}`);
- };
- 
+  };
 
   if (loading) return <Loader />;
   // if (error || !product) return <NoProduct />;

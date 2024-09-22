@@ -1,20 +1,21 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
+import logo from "../../Assets/Images/logo.png"
 
 export default function Logo() {
   return (
     <div>
       <Link href="/">
         <span className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
-            src="/images/3.png"
+          <Image
+            src={logo}
             alt="Logo"
             className="object-cover"
-            width={100} // Set the width to match `w-60` (60 * 4px = 240px)
-            height={36} // Set the height to match `h-24` (24 * 4px = 96px)
-            priority // Optional: Load the image with priority
-          />{" "}
+            width={100} 
+            height={36} 
+            priority 
+          />
         </span>
       </Link>
     </div>

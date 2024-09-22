@@ -6,6 +6,7 @@ import Logo from '@/app/Components/Logo';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import googlelogo from "../../../Assets/Images/google.png"
 
 export default function Login() {
   const router = useRouter();
@@ -77,7 +78,7 @@ export default function Login() {
               className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded w-full flex items-center justify-center"
               onClick={handleGoogleSignIn}
             >
-              <Image src="/images/google.png" width={20} height={20} alt="Google logo" />
+              <Image src={googlelogo} width={20} height={20} alt="Google logo" />
               <span className="ml-2">Log in with Google</span>
             </button>
           </div>

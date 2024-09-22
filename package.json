@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
+    "file-loader": "^6.2.0",
     "firebase": "^10.13.1",
     "flowbite": "^2.5.1",
     "flowbite-react": "^0.10.1",
