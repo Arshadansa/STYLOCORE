@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
 import Image from "next/image";
-import { useRouter } from "next/router"; // Import useRouter from Next.js
 import Link from "next/link";
 
 const TabContent = ({ activeTab, orders }) => {
   const completedOrders = orders.filter(
-    (order) => order.deliveryStatus === "Completed"
+    (order) => order.deliveryStatus === "Delivered"
   );
   const cancelledOrders = orders.filter(
     (order) => order.deliveryStatus === "Cancelled"
+  );
+  const processingOrders = orders.filter(
+    (order) => order.deliveryStatus === "Processing"
   );
 
   const [showCallPopup, setShowCallPopup] = useState(false);
@@ -25,7 +27,7 @@ const TabContent = ({ activeTab, orders }) => {
             <div className="flex justify-between items-end mb-4">
               <p className="text-lg font-semibold text-pink-600">Receipt</p>
               <p className="md:text-lg text-xs font-semibold text-black">
-                Order Id: <span className="text-gray-400">{order.id}</span> 
+                Order Id: <span className="text-gray-400">{order.id}</span>
               </p>
             </div>
             {order.items.map((item, index) => (
@@ -33,10 +35,7 @@ const TabContent = ({ activeTab, orders }) => {
                 <div className="p-4">
                   <div className="grid p-1  grid-cols-1 sm:grid-cols-5 lg:grid-cols-5 h-auto border gap-2 md:gap-4 items-center">
                     <div className="col-span-1 flex items-center justify-center">
-                      <Link
-                        href={`/collections-product/${item.id}`}
-                        passHref
-                      >
+                      <Link href={`/collections-product/${item.id}`} passHref>
                         <Image
                           width={120}
                           height={90}
@@ -91,10 +90,12 @@ const TabContent = ({ activeTab, orders }) => {
                             Order Placed
                           </span>
                           <span className="text-xs text-black">
-                            {order.deliveryStatus === "Completed"
+                            {order.deliveryStatus === "Delivered"
                               ? "Delivered"
                               : order.deliveryStatus === "Cancelled"
                               ? "Cancelled"
+                              : order.deliveryStatus === "Processing"
+                              ? "Processing"
                               : "In Progress"}
                           </span>
                         </div>
@@ -103,18 +104,21 @@ const TabContent = ({ activeTab, orders }) => {
                             className={`rounded ${
                               order.deliveryStatus === "Cancelled"
                                 ? "bg-red-600"
-                                : order.deliveryStatus === "Completed"
+                                : order.deliveryStatus === "Delivered"
                                 ? "bg-green-600"
+                                : order.deliveryStatus === "Processing"
+                                ? "bg-yellow-500"
                                 : "bg-pink-600"
                             }`}
                             style={{
                               width:
-                                order.deliveryStatus === "Completed"
+                                order.deliveryStatus === "Delivered"
                                   ? "100%"
-                                  : order.deliveryStatus === "Cancelled"
+                                  : order.deliveryStatus === "Cancelled" ||
+                                    order.deliveryStatus === "Processed"
                                   ? "100%"
                                   : "50%",
-                            }} // Adjust width based on status
+                            }}
                           ></div>
                         </div>
                       </div>
@@ -161,8 +165,9 @@ const TabContent = ({ activeTab, orders }) => {
   return (
     <div className="p-4">
       {activeTab === "All Orders" && renderOrders(orders)}
-      {activeTab === "Completed" && renderOrders(completedOrders)}
+      {activeTab === "Delivered" && renderOrders(completedOrders)}
       {activeTab === "Cancelled" && renderOrders(cancelledOrders)}
+      {activeTab === "Processing" && renderOrders(processingOrders)}
 
       {showCallPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">

@@ -25,7 +25,7 @@ export default function Checkout() {
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [deliveryStatus, setDeliveryStatus] = useState("Under Processing");
+  const [deliveryStatus, setDeliveryStatus] = useState("Processing");
 
   const totalPrice = useMemo(() => {
     return cart

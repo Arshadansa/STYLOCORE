@@ -15,9 +15,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Loader from "../../Components/loader/Loader";
 import NoProduct from "@/app/Components/loader/NoProduct";
 
-
 export default function AllOrders() {
-
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -103,18 +101,20 @@ export default function AllOrders() {
       <div className="max-w-screen-xl py-20 h-full mx-auto">
         <div className="w-full max-w-7xl mx-auto px-4 md:px-8 mb-10">
           <div className="flex  lg:flex-row items-center justify-center lg:justify-between">
-            <ul className="flex  items-center gap-x-11 gap-y-3">
-              {["All Orders", "Completed", "Cancelled"].map((tab) => (
-                <li
-                  key={tab}
-                  className={`font-medium text-lg leading-8 cursor-pointer transition-all duration-500 ${
-                    activeTab === tab ? "text-indigo-600" : "text-black"
-                  }`}
-                  onClick={() => setActiveTab(tab)}
-                >
-                  {tab}
-                </li>
-              ))}
+            <ul className="flex items-center gap-x-11 gap-y-3">
+              {["All Orders", "Delivered", "Processing", "Cancelled"].map(
+                (tab) => (
+                  <li
+                    key={tab}
+                    className={`font-medium text-lg leading-8 cursor-pointer transition-all duration-500 ${
+                      activeTab === tab ? "text-indigo-600" : "text-black"
+                    }`}
+                    onClick={() => setActiveTab(tab)}
+                  >
+                    {tab}
+                  </li>
+                )
+              )}
             </ul>
           </div>
         </div>
